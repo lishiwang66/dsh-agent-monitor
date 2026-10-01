@@ -21,3 +21,7 @@ npm-debug.log*
 # 本地验证产物（对账脚本只读，不产出文件；这里兜底）
 agent-monitor-*.csv
 agent-monitor-*.json
+
+# ����������ʱ�ֶ��ϴ�Ϊ Release �����������ֿ⣩
+*.tgz
+

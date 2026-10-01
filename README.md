@@ -9,6 +9,18 @@ DSH Web GUI 的客户端插件：**现代仪表盘式的实时监测面板**。�
 - `Ctrl+`` ` 呼出 / 收起（走宿主正规的 `ctx.shortcuts`，没有会话时返回 blocked 并给出原因）
 - **纯只读**：不改运行时、不写 DSH 数据、不额外落盘
 
+## 下载与安装
+
+| 你想要 | 拿这个 |
+|---|---|
+| **装到 DSH**（推荐） | [`dsh-agent-monitor-0.1.0.tgz`](https://github.com/lishiwang66/dsh-agent-monitor/releases/download/v0.1.0/dsh-agent-monitor-0.1.0.tgz) → 在 profile 目录执行 `pnpm add <该链接>`（详见下方「安装」） |
+| 看源码 / 自己改 | `git clone https://github.com/lishiwang66/dsh-agent-monitor` |
+| 只要压缩包 | [v0.1.0 源码 zip](https://github.com/lishiwang66/dsh-agent-monitor/archive/refs/tags/v0.1.0.zip) · [v0.1.0 tar.gz](https://github.com/lishiwang66/dsh-agent-monitor/archive/refs/tags/v0.1.0.tar.gz) · [main zip](https://github.com/lishiwang66/dsh-agent-monitor/archive/refs/heads/main.zip) |
+| 发行说明与全部版本 | [Releases](https://github.com/lishiwang66/dsh-agent-monitor/releases) |
+
+`main` 与附件的关系：附件（`.tgz`）是本插件**可直接安装**的产物，装有 `lib/`、`scripts/`、`SKILL.md`、`README`、`LICENSE`；
+自测脚本（`selftest.mjs` / `client-selftest.mjs` / `verify-against-dsh.mjs`）与 CI 配置只在仓库里，源码包才包含它们。
+
 ## 打开方式
 
 | 入口 | 行为 |
