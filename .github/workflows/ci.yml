@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # node:zlib 的 zstd 支持从 22.15 开始，所以下限就是它
+        node: ['22.15', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: host 半自测
+        run: node selftest.mjs
+      - name: client 半自测（mock 运行时真渲染）
+        run: node client-selftest.mjs
+      - name: 检查仓库里没有本地绝对路径
+        run: |
+          # 排除 .github（这条检查自己的正则就写在那里）
+          if grep -rIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=.github \
+               -E 'C:\\Users\\|/Users/[A-Za-z]+/' .; then
+            echo "::error::发现本机绝对路径，发布前必须清掉"
+            exit 1
+          fi
+          echo "干净：没有本机绝对路径"
