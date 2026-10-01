@@ -1,5 +1,8 @@
 # Agent 监视器（dsh-agent-monitor）
 
+[![tests](https://github.com/lishiwang66/dsh-agent-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/lishiwang66/dsh-agent-monitor/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 DSH Web GUI 的客户端插件：**现代仪表盘式的实时监测面板**。一屏看清「我在做什么」和「花了多少」。
 
 - 右侧栏一个常驻 tab（与「文件 / 文档 / 指南」并列），侧边栏图标 → 整页版
@@ -172,9 +175,21 @@ New-Item -ItemType Junction `
 
 ## 迭代方式
 
+如果按上面的**方式 A** 安装、并且 `local-bundles\dsh-agent-monitor` 是指向本仓库工作副本的**目录联接**，
+那么**没有同步步骤**：直接改这个目录里的文件即可。
+
 ```powershell
-# 源码改动后同步到已安装副本（客户端 bundle 会被产物监视器自动热重载，不用刷新）
-$src = '<workspace>\dsh-agent-monitor'; $dst = "$env:USERPROFILE\.dsh\local-bundles\dsh-agent-monitor"
+# 一次性建立「单一真相」：让 DSH 读的就是这个仓库工作副本
+Remove-Item "$env:USERPROFILE\.dsh\local-bundles\dsh-agent-monitor" -Recurse -Force
+New-Item -ItemType Junction `
+  -Path "$env:USERPROFILE\.dsh\local-bundles\dsh-agent-monitor" `
+  -Target "<本仓库的绝对路径>"
+```
+
+如果你是**拷贝**过去的（不是联接），改完源码要同步一次：
+
+```powershell
+$src = '<本仓库>'; $dst = "$env:USERPROFILE\.dsh\local-bundles\dsh-agent-monitor"
 Get-ChildItem $src -Recurse -File | ForEach-Object {
   $to = Join-Path $dst $_.FullName.Substring($src.Length + 1)
   New-Item -ItemType Directory -Force -Path (Split-Path $to) | Out-Null
