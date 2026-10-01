@@ -1,0 +1,12 @@
+# 仓库里一律用 LF：CI 在 Linux 上跑，shell 步骤和脚本对 CRLF 很敏感
+* text=auto eol=lf
+
+# 二进制/图片不要被当作文本处理
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.zip binary
+*.zstd binary

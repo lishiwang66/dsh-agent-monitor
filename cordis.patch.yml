@@ -1,0 +1,5 @@
+# dsh-agent-monitor bundle 层：插入「Agent 监视器」插件行。
+- insert:
+    - id: dsh-agent-monitor
+      name: 'dsh-agent-monitor'
+      config: {}

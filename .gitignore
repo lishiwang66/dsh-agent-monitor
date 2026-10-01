@@ -1,0 +1,23 @@
+# 依赖与产物
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+.tmp/
+*.tmp
+*.bak
+
+# 本地验证产物（对账脚本只读，不产出文件；这里兜底）
+agent-monitor-*.csv
+agent-monitor-*.json

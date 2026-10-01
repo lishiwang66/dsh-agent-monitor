@@ -1,0 +1,58 @@
+{
+  "name": "dsh-agent-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DSH Web GUI 的只读实时监测面板：活动流 + token 四桶 + 峰谷计价花费 + 上下文占用 + 子代理 + 钱包余额。",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node selftest.mjs && node client-selftest.mjs",
+    "test:host": "node selftest.mjs",
+    "test:client": "node client-selftest.mjs",
+    "verify": "node verify-against-dsh.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "monitor",
+    "observability",
+    "token-usage",
+    "cost-tracking",
+    "dashboard"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "cordis": ">=4.0.0-rc <5"
+  },
+  "engines": {
+    "node": "^22.15.0 || >=24.0.0"
+  }
+}
